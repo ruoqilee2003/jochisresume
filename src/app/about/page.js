@@ -139,7 +139,7 @@ export default function About() {
           <div>
             <h3 className="font-medium mb-1">程式語言</h3>
             <div className="flex flex-wrap gap-2">
-              {["Python", "JavaScript", "HTML", "CSS"].map(skill => (
+              {["Python", "JavaScript", "HTML/CSS", "MySQL"].map(skill => (
                 <span key={skill} className="text-sm px-3 py-1 rounded-full border border-orange-300 bg-white shadow-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-purple-600">
                   {skill}
                 </span>
