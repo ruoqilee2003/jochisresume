@@ -36,7 +36,7 @@ const awards = [
   { year: "2024", award: "春城舊夢-五校國樂聯合音樂會" },
   { year: "2023", award: "飛鳶盃公共事務個案競賽" },
   { year: "2022", award: "張金鑑行政學術獎獎學金" },
-  { year: "2021", award: "AZ Project iDEA 臺灣前十隊伍"},
+  { year: "2022", award: "AZ Project iDEA 臺灣前十隊伍"},
 ];
 
 export default function About() {
