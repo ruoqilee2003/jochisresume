@@ -36,7 +36,7 @@ const awards = [
   { year: "2024", award: "春城舊夢-五校國樂聯合音樂會" },
   { year: "2023", award: "飛鳶盃公共事務個案競賽" },
   { year: "2022", award: "張金鑑行政學術獎獎學金" },
-  { year: "2022", award: "AZ Project iDEA 臺灣前十隊伍"},
+  { year: "2021", award: "AZ Project iDEA 臺灣前十隊伍"},
 ];
 
 export default function About() {
@@ -148,7 +148,7 @@ export default function About() {
           </div>
 
           {/* 視覺設計 */}
-          <div>
+          <div className="-ml-2">
             <h3 className="font-medium mb-1">視覺設計</h3>
             <div className="flex flex-wrap gap-2">
               {["Figma", "Photoshop", "Illustrator", "Blender", "VUP", "Vroid"].map(skill => (
@@ -172,7 +172,7 @@ export default function About() {
           </div>
 
           {/* 影像／遊戲 */}
-          <div>
+          <div className="-ml-2">
             <h3 className="font-medium mb-1">影像／遊戲</h3>
             <div className="flex flex-wrap gap-2">
               {["Unity", "Unreal", "PowerDirector"].map(skill => (
@@ -208,72 +208,71 @@ export default function About() {
         </div>
       </div>
 
-{/* 輪播區塊 */}
-<div className="w-full mt-4 mb-2">
-  <h2 className="text-xl font-semibold mb-2">生活片段</h2>
-  <div className="relative w-full max-w-[90%] mx-auto aspect-[16/5] flex items-center justify-center overflow-hidden rounded-2xl">
-    {fakeImages.map((src, index) => {
-      const total = fakeImages.length;
-      const isMobile = typeof window !== 'undefined' && window.innerWidth < 1000;
-      const positions = isMobile ? [0] : [-2, -1, 0, 1, 2];
-      const relativeIndex = (index - current + total) % total;
+      {/* 輪播區塊 */}
+      <div className="w-full mt-4 mb-2">
+        <h2 className="text-xl font-semibold mb-2">生活片段</h2>
+        <div className="relative w-full max-w-[90%] mx-auto aspect-[16/5] flex items-center justify-center overflow-hidden rounded-2xl">
+          {fakeImages.map((src, index) => {
+            const total = fakeImages.length;
+            const isMobile = typeof window !== 'undefined' && window.innerWidth < 1000;
+            const positions = isMobile ? [0] : [-2, -1, 0, 1, 2];
+            const relativeIndex = (index - current + total) % total;
 
-      let position = null;
+            let position = null;
 
-      for (let offset of positions) {
-        if ((current + offset + total) % total === index) {
-          position = offset;
-          break;
-        }
-      }
+            for (let offset of positions) {
+              if ((current + offset + total) % total === index) {
+                position = offset;
+                break;
+              }
+            }
 
-      if (position === null) return null;
+            if (position === null) return null;
 
-      const scaleMap = isMobile
-        ? { 0: 1.2 }
-        : { 0: 1.25, 1: 1, "-1": 1, 2: 0.85, "-2": 0.85 };
-      const opacityMap = isMobile
-        ? { 0: 1 }
-        : { 0: 1, 1: 0.6, "-1": 0.6, 2: 0.3, "-2": 0.3 };
-      const translateX = isMobile ? 0 : position * 260;
+            const scaleMap = isMobile
+              ? { 0: 1.2 }
+              : { 0: 1.25, 1: 1, "-1": 1, 2: 0.85, "-2": 0.85 };
+            const opacityMap = isMobile
+              ? { 0: 1 }
+              : { 0: 1, 1: 0.6, "-1": 0.6, 2: 0.3, "-2": 0.3 };
+            const translateX = isMobile ? 0 : position * 260;
 
-      return (
-        <motion.div
-          key={index}
-          animate={{
-            x: translateX,
-            scale: scaleMap[position],
-            opacity: opacityMap[position],
-            zIndex: position === 0 ? 10 : 5 - Math.abs(position),
-          }}
-          transition={{ duration: 0.5 }}
-          className="absolute aspect-square w-[25%] max-w-[260px] flex-shrink-0 overflow-hidden rounded-2xl shadow-lg"
-        >
-          <div className="relative w-full h-full">
-            <Image src={src} alt={`photo-${index}`} fill className="object-cover rounded-2xl" />
+            return (
+              <motion.div 
+                key={index}
+                animate={{
+                  x: translateX,
+                  scale: scaleMap[position],
+                  opacity: opacityMap[position],
+                  zIndex: position === 0 ? 10 : 5 - Math.abs(position),
+                }}
+                transition={{ duration: 0.5 }}
+                className="absolute aspect-square w-[25%] max-w-[260px] flex-shrink-0 overflow-hidden rounded-2xl shadow-lg"
+              >
+                <div className="relative w-full h-full">
+                  <Image src={src} alt={`photo-${index}`} fill className="object-cover rounded-2xl" />
+                </div>
+              </motion.div>
+            );
+          })}
+          <div className="absolute inset-y-0 left-0 flex items-center z-20">
+            <button
+              onClick={() => setCurrent((prev) => (prev - 1 + fakeImages.length) % fakeImages.length)}
+              className="px-3 py-2 m-2 rounded-full border-2 border-black bg-white text-black font-extrabold text-xl hover:bg-black hover:text-white active:scale-95 transition-all"
+            >
+              ←
+            </button>
           </div>
-        </motion.div>
-      );
-    })}
-    <div className="absolute inset-y-0 left-0 flex items-center z-20">
-      <button
-        onClick={() => setCurrent((prev) => (prev - 1 + fakeImages.length) % fakeImages.length)}
-        className="px-3 py-2 m-2 rounded-full border-2 border-black bg-white text-black font-extrabold text-xl hover:bg-black hover:text-white active:scale-95 transition-all"
-      >
-        ←
-      </button>
-    </div>
-    <div className="absolute inset-y-0 right-0 flex items-center z-20">
-      <button
-        onClick={() => setCurrent((prev) => (prev + 1) % fakeImages.length)}
-        className="px-3 py-2 m-2 rounded-full border-2 border-black bg-white text-black font-extrabold text-xl hover:bg-black hover:text-white active:scale-95 transition-all"
-      >
-        →
-      </button>
-    </div>
-  </div>
-</div>
-
+          <div className="absolute inset-y-0 right-0 flex items-center z-20">
+            <button
+              onClick={() => setCurrent((prev) => (prev + 1) % fakeImages.length)}
+              className="px-3 py-2 m-2 rounded-full border-2 border-black bg-white text-black font-extrabold text-xl hover:bg-black hover:text-white active:scale-95 transition-all"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* 查看作品按鈕 */}
       <div className="mt-5 mb-4">
