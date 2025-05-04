@@ -11,7 +11,6 @@ const worksData = [
     category: "DESIGN",
     date: "2025-03-12",
     image: "01.png",
-    link: "https://example.com/poster",
   },
   {
     name: "雲湧樂尋",
@@ -20,32 +19,34 @@ const worksData = [
     image: "02.png",
   },
   {
+    name: "Memento",
+    category: "PROJECT",
+    date: "2025-03-12",
+    image: "memento.png",
+  },
+  {
+    name: "PickyTix",
+    category: "PROJECT",
+    date: "2025-03-12",
+    image: "icon.png",
+  },
+  {
     name: "我的潮崙",
     category: "DIGITAL ART",
     date: "2025-01-15",
     image: "05.png",
-    link: "https://meekey.app",
   },
   {
     name: "UNTITLED",
     category: "DIGITAL ART",
     date: "2025-01-15",
     image: "06.png",
-    link: "https://meekey.app",
-  },
-  {
-    name: "TETRIS",
-    category: "PROJECT",
-    date: "2025-01-15",
-    image: "08.png",
-    link: "https://meekey.app",
   },
   {
     name: "NFT CUBES",
     category: "PROJECT",
     date: "2025-01-15",
     image: "09.png",
-    link: "https://meekey.app",
   },
 ];
 
@@ -119,20 +120,20 @@ export default function Others() {
             />
             <div className="absolute bottom-3 left-3 bg-white/90 text-black px-3 py-1 text-sm font-medium rounded-full shadow-md backdrop-blur-sm transition-opacity duration-200 opacity-100 group-hover:opacity-100 hidden xl:block">
   {work.name}
-</div>
-<div className="absolute bottom-3 right-3">
-  <Image
-    src={likedWorks[work.name] ? getImagePath("click.png") : getImagePath("heart.png")}
-    alt="heart"
-    width={20}
-    height={20}
-    onClick={(e) => {
-      e.stopPropagation();
-      toggleLike(work.name);
-    }}
-    className="cursor-pointer hover:scale-110 transition"
-  />
-</div>
+    </div>
+    <div className="absolute bottom-3 right-3">
+      <Image
+        src={likedWorks[work.name] ? getImagePath("click.png") : getImagePath("heart.png")}
+        alt="heart"
+        width={20}
+        height={20}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleLike(work.name);
+        }}
+        className="cursor-pointer hover:scale-110 transition"
+      />
+    </div>
           </div>
         ))}
       </div>
